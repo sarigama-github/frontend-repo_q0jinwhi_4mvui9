@@ -2,6 +2,7 @@ import { Menu, IndianRupee } from "lucide-react";
 import { useState } from "react";
 import Tilt3D from "./Tilt3D";
 import { motion } from "framer-motion";
+import MagneticButton from "./MagneticButton";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -27,9 +28,9 @@ export default function Navbar() {
             </div>
           </Tilt3D>
           <nav className="hidden md:flex items-center gap-8 text-gray-700">
-            <Tilt3D><button onClick={() => scrollTo("impact")} className="hover:text-gray-900">Impact</button></Tilt3D>
-            <Tilt3D><button onClick={() => scrollTo("donate")} className="hover:text-gray-900">Donate</button></Tilt3D>
-            <Tilt3D><button onClick={() => scrollTo("stories")} className="hover:text-gray-900">Stories</button></Tilt3D>
+            <MagneticButton as="button" className="px-2 py-1 rounded-md hover:text-gray-900 bg-transparent" onClick={() => scrollTo("impact")}>Impact</MagneticButton>
+            <MagneticButton as="button" className="px-2 py-1 rounded-md hover:text-gray-900 bg-transparent" onClick={() => scrollTo("donate")}>Donate</MagneticButton>
+            <MagneticButton as="button" className="px-2 py-1 rounded-md hover:text-gray-900 bg-transparent" onClick={() => scrollTo("stories")}>Stories</MagneticButton>
             <Tilt3D>
               <a href="#donate" onClick={(e)=>{e.preventDefault();scrollTo('donate')}} className="inline-flex items-center gap-2 bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 shadow-lg">
                 <IndianRupee size={16} /> Donate

@@ -1,29 +1,46 @@
-import { useRef, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
 import Tilt3D from "./Tilt3D";
 
 export default function MagneticButton({ children, className = "", onClick, as = "button" }) {
   const ref = useRef(null);
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
-  const sx = useSpring(mx, { stiffness: 200, damping: 20 });
-  const sy = useSpring(my, { stiffness: 200, damping: 20 });
+  const [isCoarse, setIsCoarse] = useState(false);
+  const prefersReduced = useReducedMotion();
+  const strength = isCoarse ? 0.15 : 0.3; // softer on touch
+  const stiffness = isCoarse ? 160 : 200;
+  const damping = isCoarse ? 22 : 20;
+  const sx = useSpring(mx, { stiffness, damping });
+  const sy = useSpring(my, { stiffness, damping });
   const [ripple, setRipple] = useState(null);
 
+  useEffect(() => {
+    const mq = window.matchMedia && window.matchMedia("(pointer: coarse)");
+    const handler = () => setIsCoarse(!!mq.matches);
+    if (mq && "addEventListener" in mq) mq.addEventListener("change", handler);
+    handler();
+    return () => {
+      if (mq && "removeEventListener" in mq) mq.removeEventListener("change", handler);
+    };
+  }, []);
+
   function onMove(e) {
+    if (prefersReduced) return; // no magnetic if reduced motion
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
     const x = e.clientX - (rect.left + rect.width / 2);
     const y = e.clientY - (rect.top + rect.height / 2);
-    mx.set(x * 0.3);
-    my.set(y * 0.3);
+    mx.set(x * strength);
+    my.set(y * strength);
   }
   function onLeave() {
     mx.set(0);
     my.set(0);
   }
   function onDown(e) {
+    if (prefersReduced) return;
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
@@ -35,7 +52,7 @@ export default function MagneticButton({ children, className = "", onClick, as =
 
   const Comp = as;
   return (
-    <Tilt3D hoverZ={24} intensity={8}>
+    <Tilt3D hoverZ={isCoarse ? 14 : 24} intensity={isCoarse ? 6 : 8}>
       <motion.div style={{ x: sx, y: sy }}>
         <Comp
           ref={ref}
@@ -46,7 +63,7 @@ export default function MagneticButton({ children, className = "", onClick, as =
           className={`relative overflow-hidden ${className}`}
         >
           {children}
-          {ripple && (
+          {ripple && !prefersReduced && (
             <span
               key={ripple.key}
               className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/30"

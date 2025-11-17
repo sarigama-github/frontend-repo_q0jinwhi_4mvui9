@@ -8,10 +8,10 @@ export default function Hero({ onDonateClick }) {
   return (
     <section className="relative pt-28 pb-24 overflow-hidden">
       {/* 3D Spline embed alongside hero to add floating paw/heart */}
-      <div className="absolute inset-x-0 top-24 -z-10 opacity-70">
+      <div className="absolute inset-x-0 top-24 -z-10 opacity-80">
         <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <div />
-          <SplineEmbed url="https://prod.spline.design/8oB0v0vHzkN1sNn3/scene.splinecode" />
+          <SplineEmbed url="https://prod.spline.design/yQYzS1k1s7wJqkzD/scene.splinecode" />
         </div>
       </div>
 
