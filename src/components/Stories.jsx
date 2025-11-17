@@ -3,12 +3,12 @@ export default function Stories() {
     {
       img: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=1600&auto=format&fit=crop",
       title: "Brownie found a forever home",
-      text: "Rescued from the streets, healed and adopted by a lovely family.",
+      text: "Rescued from the streets of Pune, healed and adopted by a lovely family.",
     },
     {
       img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop",
       title: "Rani the cow is safe",
-      text: "Given shelter, medical care, and a peaceful life at our sanctuary.",
+      text: "Given shelter, medical care, and a peaceful life at our gaushala.",
     },
     {
       img: "https://images.unsplash.com/photo-1568572933382-74d440642117?q=80&w=1600&auto=format&fit=crop",
@@ -22,7 +22,7 @@ export default function Stories() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-10">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Stories of Hope</h2>
-          <p className="mt-3 text-gray-700">A glimpse of what your generosity creates.</p>
+          <p className="mt-3 text-gray-700">A glimpse of what your generosity creates across Bharat.</p>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           {items.map((it, idx) => (

@@ -13,7 +13,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-rose-50/60 via-amber-50/40 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-amber-50/70 via-white to-emerald-50/50">
       <Navbar />
       <main>
         <Hero onDonateClick={scrollToDonate} />
@@ -21,7 +21,8 @@ function App() {
         <DonateForm ref={donateRef} />
         <Stories />
         <footer className="py-10 text-center text-gray-600">
-          <p>© {new Date().getFullYear()} Paws & Hearts. Compassion in action.</p>
+          <p>© {new Date().getFullYear()} Paws & Hearts India. Together for India’s animals.</p>
+          <p className="mt-1 text-xs">Donations eligible for 80G tax benefit in India.</p>
         </footer>
       </main>
     </div>

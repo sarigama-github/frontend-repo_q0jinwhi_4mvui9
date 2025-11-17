@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import { Heart, Loader2 } from "lucide-react";
+import { Heart, Loader2, IndianRupee } from "lucide-react";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "";
 
 export default function DonateForm() {
-  const [form, setForm] = useState({ name: "", email: "", amount: 25, animal: "all", message: "", recurring: false });
+  const [form, setForm] = useState({ name: "", email: "", amount: 300, animal: "all", message: "", recurring: false });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(null);
   const [recent, setRecent] = useState([]);
@@ -37,8 +37,8 @@ export default function DonateForm() {
         body: JSON.stringify(form)
       });
       if (!res.ok) throw new Error("Failed");
-      setSuccess("Thank you for making a difference! 💛");
-      setForm({ name: "", email: "", amount: 25, animal: "all", message: "", recurring: false });
+      setSuccess("Dhanyavaad! Your kindness makes a real difference. 💛");
+      setForm({ name: "", email: "", amount: 300, animal: "all", message: "", recurring: false });
       fetchRecent();
     } catch (e) {
       setSuccess("Something went wrong. Please try again.");
@@ -52,17 +52,17 @@ export default function DonateForm() {
       <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-start">
         <div>
           <h3 className="text-3xl font-bold text-gray-900">Your kindness feeds lives</h3>
-          <p className="mt-3 text-gray-700">Choose an amount and a cause. Every cent is used for food, rescue and care.</p>
+          <p className="mt-3 text-gray-700">Choose an amount and a cause. Contributions are processed in INR and eligible for 80G.</p>
           <form onSubmit={submit} className="mt-6 p-6 bg-white rounded-2xl border border-black/5 shadow-sm space-y-4">
             <div className="grid grid-cols-2 gap-3">
               <input className="px-4 py-3 rounded-xl border border-black/10" placeholder="Full name" value={form.name} onChange={e=>setForm({...form,name:e.target.value})} />
               <input className="px-4 py-3 rounded-xl border border-black/10" placeholder="Email" value={form.email} onChange={e=>setForm({...form,email:e.target.value})} />
             </div>
             <div className="grid grid-cols-3 gap-3">
-              {[10,25,50].map(v=> (
-                <button type="button" key={v} onClick={()=>setForm({...form,amount:v})} className={`px-4 py-3 rounded-xl border text-sm ${form.amount===v? 'bg-gray-900 text-white border-gray-900':'border-black/10 bg-white'}`}>${v}</button>
+              {[300,700,1500].map(v=> (
+                <button type="button" key={v} onClick={()=>setForm({...form,amount:v})} className={`px-4 py-3 rounded-xl border text-sm ${form.amount===v? 'bg-emerald-600 text-white border-emerald-600':'border-black/10 bg-white'}`}>₹{v}</button>
               ))}
-              <input type="number" min={1} value={form.amount} onChange={e=>setForm({...form,amount:parseFloat(e.target.value)})} className="col-span-3 px-4 py-3 rounded-xl border border-black/10" placeholder="Custom amount" />
+              <input type="number" min={1} value={form.amount} onChange={e=>setForm({...form,amount:parseFloat(e.target.value)})} className="col-span-3 px-4 py-3 rounded-xl border border-black/10" placeholder="Custom amount (₹)" />
             </div>
             <div className="grid grid-cols-2 gap-3">
               <select value={form.animal} onChange={e=>setForm({...form,animal:e.target.value})} className="px-4 py-3 rounded-xl border border-black/10">
@@ -76,8 +76,8 @@ export default function DonateForm() {
               </label>
             </div>
             <textarea rows="3" className="w-full px-4 py-3 rounded-xl border border-black/10" placeholder="Message (optional)" value={form.message} onChange={e=>setForm({...form,message:e.target.value})} />
-            <button disabled={!canSubmit || loading} className="w-full inline-flex items-center justify-center gap-2 bg-rose-600 text-white px-6 py-3 rounded-xl shadow hover:bg-rose-700 disabled:opacity-60">
-              {loading ? <Loader2 className="animate-spin" size={18}/> : <Heart size={18} />} Donate {form.amount ? `$${form.amount}` : ""}
+            <button disabled={!canSubmit || loading} className="w-full inline-flex items-center justify-center gap-2 bg-emerald-600 text-white px-6 py-3 rounded-xl shadow hover:bg-emerald-700 disabled:opacity-60">
+              {loading ? <Loader2 className="animate-spin" size={18}/> : <IndianRupee size={18} />} Donate {form.amount ? `₹${form.amount}` : ""}
             </button>
             {success && <p className="text-sm text-gray-700">{success}</p>}
           </form>
@@ -88,7 +88,7 @@ export default function DonateForm() {
             {recent.map((r)=> (
               <div key={r.id} className="p-4 rounded-xl bg-white border border-black/5">
                 <div className="font-medium text-gray-900">{r.name}</div>
-                <div className="text-sm text-gray-600">{r.animal} • ${r.amount}</div>
+                <div className="text-sm text-gray-600">{r.animal} • ₹{r.amount}</div>
                 {r.message && <p className="mt-2 text-sm text-gray-700">“{r.message}”</p>}
               </div>
             ))}
