@@ -1,4 +1,4 @@
-import { Heart, ShieldCheck, Trees } from "lucide-react";
+import { Heart, ShieldCheck, Leaf } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Hero({ onDonateClick }) {
@@ -25,7 +25,7 @@ export default function Hero({ onDonateClick }) {
           </div>
           <div className="mt-6 flex items-center gap-6 text-sm text-gray-700">
             <div className="flex items-center gap-2"><ShieldCheck className="text-emerald-600" size={18}/>100% Secure</div>
-            <div className="flex items-center gap-2"><Trees className="text-amber-600" size={18}/>Tax-deductible</div>
+            <div className="flex items-center gap-2"><Leaf className="text-amber-600" size={18}/>Tax-deductible</div>
           </div>
         </motion.div>
 

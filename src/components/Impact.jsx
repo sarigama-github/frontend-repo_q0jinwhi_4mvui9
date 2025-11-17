@@ -1,4 +1,4 @@
-import { PawPrint, Bone, Cow, Soup } from "lucide-react";
+import { PawPrint, Bone, Heart, Star } from "lucide-react";
 
 function Stat({ label, value, icon: Icon, color }) {
   return (
@@ -21,9 +21,9 @@ export default function Impact() {
           <p className="mt-3 text-gray-700">Transparent, tangible outcomes driven by your kindness.</p>
         </div>
         <div className="grid md:grid-cols-4 gap-5">
-          <Stat label="Animals Fed" value="12,540+" icon={Soup} color="bg-amber-500" />
-          <Stat label="Rescues" value="890+" icon={PawPrint} color="bg-rose-500" />
-          <Stat label="Cows Sheltered" value="310+" icon={Cow} color="bg-emerald-500" />
+          <Stat label="Animals Fed" value="12,540+" icon={PawPrint} color="bg-amber-500" />
+          <Stat label="Rescues" value="890+" icon={Heart} color="bg-rose-500" />
+          <Stat label="Shelter Capacity" value="310+" icon={Star} color="bg-emerald-500" />
           <Stat label="Meals per $15" value="7" icon={Bone} color="bg-indigo-500" />
         </div>
       </div>
