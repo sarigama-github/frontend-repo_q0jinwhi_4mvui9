@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Loader2, IndianRupee } from "lucide-react";
 import Tilt3D from "./Tilt3D";
+import UPICard from "./UPICard";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "";
 
@@ -89,9 +90,9 @@ export default function DonateForm() {
             </form>
           </Tilt3D>
         </div>
-        <div>
+        <div className="space-y-4">
           <Tilt3D intensity={8}><h4 className="text-xl font-semibold text-gray-900">Recent supporters</h4></Tilt3D>
-          <div className="mt-4 grid sm:grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-2 gap-4">
             {recent.map((r)=> (
               <Tilt3D key={r.id} hoverZ={16}>
                 <div className="p-4 rounded-xl bg-white border border-black/5 shadow-sm">
@@ -103,6 +104,8 @@ export default function DonateForm() {
             ))}
             {recent.length===0 && <div className="text-gray-600">Be the first to donate today.</div>}
           </div>
+          {/* UPI quick pay card with 3D flip */}
+          <UPICard />
         </div>
       </div>
     </section>

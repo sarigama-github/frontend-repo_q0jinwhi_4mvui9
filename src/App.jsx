@@ -4,7 +4,8 @@ import Hero from './components/Hero'
 import Impact from './components/Impact'
 import DonateForm from './components/DonateForm'
 import Stories from './components/Stories'
-import ParallaxScene from './components/ParallaxScene'
+import EnhancedParallax from './components/EnhancedParallax'
+import DepthCursor from './components/DepthCursor'
 
 function App() {
   const donateRef = useRef(null)
@@ -15,8 +16,9 @@ function App() {
 
   return (
     <div className="min-h-screen relative bg-gradient-to-b from-amber-50/70 via-white to-emerald-50/50">
-      {/* Global parallax background */}
-      <ParallaxScene />
+      {/* Global enhanced background and depth-reactive cursor */}
+      <EnhancedParallax />
+      <DepthCursor />
 
       <Navbar />
       <main>

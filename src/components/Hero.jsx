@@ -1,11 +1,19 @@
 import { ShieldCheck, Leaf, IndianRupee } from "lucide-react";
 import { motion } from "framer-motion";
 import Tilt3D from "./Tilt3D";
+import MagneticButton from "./MagneticButton";
+import SplineEmbed from "./SplineEmbed";
 
 export default function Hero({ onDonateClick }) {
   return (
     <section className="relative pt-28 pb-24 overflow-hidden">
-      {/* Parallax blobs handled globally */}
+      {/* 3D Spline embed alongside hero to add floating paw/heart */}
+      <div className="absolute inset-x-0 top-24 -z-10 opacity-70">
+        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+          <div />
+          <SplineEmbed url="https://prod.spline.design/8oB0v0vHzkN1sNn3/scene.splinecode" />
+        </div>
+      </div>
 
       <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
         <div>
@@ -40,11 +48,9 @@ export default function Hero({ onDonateClick }) {
           </Tilt3D>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
-            <Tilt3D hoverZ={24}>
-              <button onClick={onDonateClick} className="inline-flex items-center justify-center gap-2 bg-emerald-600 text-white px-6 py-3 rounded-xl shadow-xl hover:bg-emerald-700">
-                <IndianRupee size={18} /> Donate Now
-              </button>
-            </Tilt3D>
+            <MagneticButton onClick={onDonateClick} className="inline-flex items-center justify-center gap-2 bg-emerald-600 text-white px-6 py-3 rounded-xl shadow-xl hover:bg-emerald-700">
+              <IndianRupee size={18} /> Donate Now
+            </MagneticButton>
             <Tilt3D hoverZ={20}>
               <a href="#impact" className="px-6 py-3 rounded-xl bg-white/70 border border-black/10 hover:bg-white shadow">
                 See Our Impact
