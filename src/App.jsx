@@ -4,6 +4,7 @@ import Hero from './components/Hero'
 import Impact from './components/Impact'
 import DonateForm from './components/DonateForm'
 import Stories from './components/Stories'
+import ParallaxScene from './components/ParallaxScene'
 
 function App() {
   const donateRef = useRef(null)
@@ -13,7 +14,10 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50/70 via-white to-emerald-50/50">
+    <div className="min-h-screen relative bg-gradient-to-b from-amber-50/70 via-white to-emerald-50/50">
+      {/* Global parallax background */}
+      <ParallaxScene />
+
       <Navbar />
       <main>
         <Hero onDonateClick={scrollToDonate} />

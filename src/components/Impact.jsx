@@ -1,14 +1,17 @@
-import { PawPrint, Heart, Star, Milk, HandHeart } from "lucide-react";
+import { PawPrint, Star, Milk, HandHeart } from "lucide-react";
+import Tilt3D from "./Tilt3D";
 
 function Stat({ label, value, icon: Icon, color }) {
   return (
-    <div className="p-6 rounded-2xl bg-white border border-black/5 shadow-sm">
-      <div className={`w-10 h-10 rounded-xl grid place-items-center ${color} text-white mb-3`}>
-        <Icon size={18} />
+    <Tilt3D hoverZ={20}>
+      <div className="p-6 rounded-2xl bg-white border border-black/5 shadow-sm">
+        <div className={`w-10 h-10 rounded-xl grid place-items-center ${color} text-white mb-3`}>
+          <Icon size={18} />
+        </div>
+        <div className="text-3xl font-bold text-gray-900">{value}</div>
+        <div className="text-sm text-gray-600">{label}</div>
       </div>
-      <div className="text-3xl font-bold text-gray-900">{value}</div>
-      <div className="text-sm text-gray-600">{label}</div>
-    </div>
+    </Tilt3D>
   );
 }
 
